@@ -84,6 +84,7 @@ int main(int argc, char **argv)
     fprintf(stderr, "shmem_finc(%s) n_pes=%d\n", argv[0],n_pes);
 
 /*  test shmem_short_finc  */
+#ifdef HAVE_SHORT
 
   /*  shmalloc xs on all pes (only use the one on PE 0)  */
   max_elements_bytes = (size_t) (sizeof(short) * n_pes);
@@ -113,6 +114,8 @@ int main(int argc, char **argv)
     }
   }
   shmem_free(xs);
+
+#endif
 
 /*  test shmem_int_finc  */
 
