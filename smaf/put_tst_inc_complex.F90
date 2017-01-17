@@ -63,6 +63,10 @@
       complex (kind=8) :: xr8, yr8, prer8, postr8, br8, pr8, vr8
       common /cmr8/ xr8(N), prer8(M), yr8(N), postr8(M)
 
+#ifdef OPENSHMEM_FORT_SHORT_HEADER
+      integer SHMEM_MY_PE, SHMEM_N_PES
+#endif
+
       vrr=(1.,2.);       prr=(-1.,-2.);       brr=(-100.,-200.);
       vr4=(1.,2.);       pr4=(-1.,-2.);       br4=(-100.,-200.);
       vr8=(1.d0,2.d0);   pr8=(-1.d0,-2.d0);   br8=(-100.d0,-200.d0);
@@ -221,7 +225,11 @@
        include 'mpp/shmem.fh'
        integer len,pe
        complex       :: xrr, yrr
+#ifdef OPENSHMEM
+       call shmem_complex_put (yrr,xrr,len,pe)
+#else
        call shmem_put (yrr,xrr,len,pe)
+#endif
        return
     end subroutine subrrg
 
@@ -229,7 +237,11 @@
        include 'mpp/shmem.fh'
        integer len,pe
        complex (kind=4) :: xr4, yr4
+#ifdef OPENSHMEM
+       call shmem_complex_put (yr4,xr4,len,pe)
+#else
        call shmem_put (yr4,xr4,len,pe)
+#endif
        return
     end subroutine subr4g
 
@@ -237,6 +249,10 @@
        include 'mpp/shmem.fh'
        integer len,pe
        complex (kind=8) :: xr8, yr8
+#ifdef OPENSHMEM
+       call shmem_complex_put (yr8,xr8,len,pe)
+#else
        call shmem_put (yr8,xr8,len,pe)
+#endif
        return
     end subroutine subr8g

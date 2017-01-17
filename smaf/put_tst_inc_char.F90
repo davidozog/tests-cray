@@ -61,6 +61,10 @@
       character*26     :: xr26,yr26,prer26,postr26,br26,pr26,vr26
       common /cmr26/ xr26(N), prer26(M), yr26(N), postr26(M)
 
+#ifdef OPENSHMEM_FORT_SHORT_HEADER
+      integer SHMEM_MY_PE, SHMEM_N_PES
+#endif
+
       vrr='C';           prr='Z';             brr='B';
       vr4='ABCD';        pr4='    ';          br4='WXYZ';
       vr8='ABCDEFGH';    pr8='        ';      br8='STUVWXYZ';
@@ -246,7 +250,11 @@
        include 'mpp/shmem.fh'
        integer len,pe
        character     :: xrr, yrr
+#ifdef OPENSHMEM
+       call shmem_character_put (yrr,xrr,len,pe)
+#else
        call shmem_put (yrr,xrr,len,pe)
+#endif
        return
     end subroutine subrrg
 
@@ -254,7 +262,11 @@
        include 'mpp/shmem.fh'
        integer len,pe
        character (len=4) :: xr4, yr4
+#ifdef OPENSHMEM
+       call shmem_character_put (yr4,xr4,len,pe)
+#else
        call shmem_put (yr4,xr4,len,pe)
+#endif
        return
     end subroutine subr4g
 
@@ -262,7 +274,11 @@
        include 'mpp/shmem.fh'
        integer len,pe
        character (len=8) :: xr8, yr8
+#ifdef OPENSHMEM
+       call shmem_character_put (yr8,xr8,len,pe)
+#else
        call shmem_put (yr8,xr8,len,pe)
+#endif
        return
     end subroutine subr8g
 
@@ -270,6 +286,10 @@
        include 'mpp/shmem.fh'
        integer len,pe
        character*26     :: xr26, yr26
+#ifdef OPENSHMEM
+       call shmem_character_put (yr26,xr26,len,pe)
+#else
        call shmem_put (yr26,xr26,len,pe)
+#endif
        return
     end subroutine subr26g
