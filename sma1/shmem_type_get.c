@@ -112,6 +112,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "FAIL: PE [%d] targ_short[%d]=%d my_pe+j+1=%d\n",
                                my_pe,j,targ_short[j],my_pe+j+1);
   }
+  shmem_barrier_all();
   shmem_free(srce_short);  shmem_free(targ_short);
 
 /*  shmem_int_get test   */
@@ -137,6 +138,7 @@ int main(int argc, char **argv)
 	fprintf(stderr, "FAIL: PE [%d] targ_int[%d]=%d my_pe+j+1=%d\n",
                                my_pe,j,targ_int[j],my_pe+j+1);
   }
+  shmem_barrier_all();
   shmem_free(srce_int);  shmem_free(targ_int);
   
 /*  shmem_long_get test   */
@@ -162,6 +164,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "FAIL: PE [%d] targ_long[%d]=%d my_pe+j+1=%d\n",
                                my_pe,j,targ_long[j],my_pe+j+1);
   }
+  shmem_barrier_all();
   shmem_free(srce_long);  shmem_free(targ_long);
 
 /*  shmem_longlong_get test   */
@@ -187,6 +190,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "FAIL: PE [%d] targ_longlong[%d]=%d my_pe+j+1=%d\n",
                                my_pe,j,targ_longlong[j],my_pe+j+1);
   }
+  shmem_barrier_all();
   shmem_free(srce_longlong);  shmem_free(targ_longlong);
 
 /*  shmem_float_get test   */
@@ -212,6 +216,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "FAIL: PE [%d] targ_float[%d]=%10.2f my_pe+j+1=%d\n",
                                my_pe,j,targ_float[j],my_pe+j+1);
   }
+  shmem_barrier_all();
   shmem_free(srce_float);  shmem_free(targ_float);
 
 /*  shmem_double_get test   */
@@ -237,6 +242,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "FAIL: PE [%d] targ_double[%d]=%10.2f my_pe+j+1=%d\n",
                                my_pe,j,targ_double[j],my_pe+j+1);
   }
+  shmem_barrier_all();
   shmem_free(srce_double);  shmem_free(targ_double);
 
 /*  shmem_longdouble_get test   */
@@ -263,6 +269,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "FAIL: PE [%d] targ_longdouble[%d]=%10.2f my_pe+j+1=%d\n",
                                my_pe,j,targ_longdouble[j],my_pe+j+1);
   }
+  shmem_barrier_all();
   shmem_free(srce_longdouble);  shmem_free(targ_longdouble);
 #endif
 
