@@ -110,7 +110,6 @@ int main(int argc, char **argv)
         fprintf(stderr, "FAIL: PE [%d] targ_char[%d]=%d my_pe+j+1=%d\n",
                                my_pe,j,targ_char[j],my_pe+j+1);
   }
-  shmem_barrier_all();
   shmem_free(srce_char);  shmem_free(targ_char);
 
 /*  shmem_get16 test   */
@@ -138,7 +137,6 @@ int main(int argc, char **argv)
         fprintf(stderr, "FAIL: PE [%d] targ_short[%d]=%d my_pe+j+1=%d\n",
                                my_pe,j,targ_short[j],my_pe+j+1);
   }
-  shmem_barrier_all();
   shmem_free(srce_short);  shmem_free(targ_short);
 
 /*  shmem_get32 test   */
@@ -165,7 +163,6 @@ int main(int argc, char **argv)
 	fprintf(stderr, "FAIL: PE [%d] targ_int[%d]=%d my_pe+j+1=%d\n",
                                my_pe,j,targ_int[j],my_pe+j+1);
   }
-  shmem_barrier_all();
   shmem_free(srce_int);  shmem_free(targ_int);
   
 /*  shmem_get64 test   */
@@ -192,7 +189,6 @@ int main(int argc, char **argv)
         fprintf(stderr, "FAIL: PE [%d] targ_long[%d]=%d my_pe+j+1=%d\n",
                                my_pe,j,targ_long[j],my_pe+j+1);
   }
-  shmem_barrier_all();
   shmem_free(srce_long);  shmem_free(targ_long);
 
 /*  shmem_get128 test   */
@@ -222,7 +218,6 @@ int main(int argc, char **argv)
         fprintf(stderr, "FAIL: PE [%d] targ_long[%d]=%d my_pe+j+1=%d\n",
                                my_pe,j,targ_long[j],my_pe+j+1);
   }
-  shmem_barrier_all();
   shmem_free(srce_long);  shmem_free(targ_long);
 
 #ifdef SHMEM_C_GENERIC_32
@@ -251,7 +246,6 @@ int main(int argc, char **argv)
         fprintf(stderr, "FAIL: PE [%d] targ_int[%d]=%d my_pe+j+1=%d\n",
                                my_pe,j,targ_int[j],my_pe+j+1);
   }
-  shmem_barrier_all();
   shmem_free(srce_int);  shmem_free(targ_int);
 
 #else
@@ -280,7 +274,6 @@ int main(int argc, char **argv)
         fprintf(stderr, "FAIL: PE [%d] targ_long[%d]=%d my_pe+j+1=%d\n",
                                my_pe,j,targ_long[j],my_pe+j+1);
   }
-  shmem_barrier_all();
   shmem_free(srce_long);  shmem_free(targ_long);
 
 #endif
