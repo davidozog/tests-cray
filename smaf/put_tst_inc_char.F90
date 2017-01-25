@@ -112,19 +112,22 @@
 !     call subrr ( 111,   N,N,subrrg       )   ! call to generic shmem_put
       call subrr ( 112,   N,N,shmem_character_put )
  
+#ifndef OPENSHMEM
 !     Test character (len=4) calls
       call subr4 ( 211,   N,N,subr4g       )   ! call to generic shmem_put
       call subr4 ( 212,   N,N,shmem_put4   )
-      call subr4 ( 213, 4*N,N,shmem_putmem )   ! len is in bytes
 
 !     Test character (len=8) calls
       call subr8 ( 311, 2*N,N,subr8g       )   ! call to generic shmem_put
       call subr8 ( 312,   N,N,shmem_put8   )
+#endif
+      call subr4 ( 213, 4*N,N,shmem_putmem )   ! len is in bytes
       call subr8 ( 313, 8*N,N,shmem_putmem )   ! len is in bytes
 
 !     Test character*26 calls
 !     call subr26 ( 411,26*N,N,subr26g      )  ! call to generic shmem_put
       call subr26 ( 412,26*N,N,shmem_putmem )  ! len is in bytes
+
 
 #endif
 
@@ -250,9 +253,7 @@
        include 'mpp/shmem.fh'
        integer len,pe
        character     :: xrr, yrr
-#ifdef OPENSHMEM
-       call shmem_character_put (yrr,xrr,len,pe)
-#else
+#ifndef OPENSHMEM
        call shmem_put (yrr,xrr,len,pe)
 #endif
        return
@@ -262,9 +263,7 @@
        include 'mpp/shmem.fh'
        integer len,pe
        character (len=4) :: xr4, yr4
-#ifdef OPENSHMEM
-       call shmem_character_put (yr4,xr4,len,pe)
-#else
+#ifndef OPENSHMEM
        call shmem_put (yr4,xr4,len,pe)
 #endif
        return
@@ -274,9 +273,7 @@
        include 'mpp/shmem.fh'
        integer len,pe
        character (len=8) :: xr8, yr8
-#ifdef OPENSHMEM
-       call shmem_character_put (yr8,xr8,len,pe)
-#else
+#ifndef OPENSHMEM
        call shmem_put (yr8,xr8,len,pe)
 #endif
        return
@@ -286,9 +283,7 @@
        include 'mpp/shmem.fh'
        integer len,pe
        character*26     :: xr26, yr26
-#ifdef OPENSHMEM
-       call shmem_character_put (yr26,xr26,len,pe)
-#else
+#ifndef OPENSHMEM
        call shmem_put (yr26,xr26,len,pe)
 #endif
        return

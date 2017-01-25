@@ -107,6 +107,7 @@
 
 #else
 
+#ifndef OPENSHMEM
 !     tests using default compiler options  REAL==REAL*4  INTEGER==INTEGER*4
 !     Test complex call
       call subrr ( 111, 2*N,N,subrrg       )   ! call to generic shmem_put
@@ -114,6 +115,8 @@
  
 !     Test complex (kind=4) calls
       call subr4 ( 211, 2*N,N,subr4g       )   ! call to generic shmem_put
+      call subr8 ( 311, 4*N,N,subr8g       )   ! call to generic shmem_put
+#endif
       call subr4 ( 212, 2*N,N,shmem_put4   )
       call subr4 ( 213,   N,N,shmem_put8   )
       call subr4 ( 214, 2*N,N,shmem_put32  )
@@ -121,7 +124,6 @@
       call subr4 ( 216, 8*N,N,shmem_putmem )   ! len is in bytes
 
 !     Test complex (kind=8) calls
-      call subr8 ( 311, 4*N,N,subr8g       )   ! call to generic shmem_put
       call subr8 ( 312, 2*N,N,shmem_put8   )
       call subr8 ( 314, 2*N,N,shmem_put64  )
       call subr8 ( 315,   N,N,shmem_put128 )
@@ -225,9 +227,7 @@
        include 'mpp/shmem.fh'
        integer len,pe
        complex       :: xrr, yrr
-#ifdef OPENSHMEM
-       call shmem_complex_put (yrr,xrr,len,pe)
-#else
+#ifndef OPENSHMEM
        call shmem_put (yrr,xrr,len,pe)
 #endif
        return
@@ -237,9 +237,7 @@
        include 'mpp/shmem.fh'
        integer len,pe
        complex (kind=4) :: xr4, yr4
-#ifdef OPENSHMEM
-       call shmem_complex_put (yr4,xr4,len,pe)
-#else
+#ifndef OPENSHMEM
        call shmem_put (yr4,xr4,len,pe)
 #endif
        return
@@ -249,9 +247,7 @@
        include 'mpp/shmem.fh'
        integer len,pe
        complex (kind=8) :: xr8, yr8
-#ifdef OPENSHMEM
-       call shmem_complex_put (yr8,xr8,len,pe)
-#else
+#ifndef OPENSHMEM
        call shmem_put (yr8,xr8,len,pe)
 #endif
        return

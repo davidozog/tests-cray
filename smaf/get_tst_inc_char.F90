@@ -110,19 +110,21 @@
 !     Test character call
 !     call subrr ( 111,   N,N,subrrg       )   ! call to generic shmem_get
       call subrr ( 112,   N,N,shmem_character_get )
- 
+
+#ifndef OPENSHMEM
 !     Test character (len=4) calls
       call subr4 ( 211,   N,N,subr4g       )   ! call to generic shmem_get
       call subr4 ( 212,   N,N,shmem_get4   )
-      call subr4 ( 213, 4*N,N,shmem_getmem )   ! len is in bytes
 
 !     Test character (len=8) calls
       call subr8 ( 311, 2*N,N,subr8g       )   ! call to generic shmem_get
       call subr8 ( 312,   N,N,shmem_get8   )
-      call subr8 ( 313, 8*N,N,shmem_getmem )   ! len is in bytes
 
 !     Test character*26 calls
 !     call subr26 ( 411,26*N,N,subr26g      )  ! call to generic shmem_get
+#endif
+      call subr4 ( 213, 4*N,N,shmem_getmem )   ! len is in bytes
+      call subr8 ( 313, 8*N,N,shmem_getmem )   ! len is in bytes
       call subr26 ( 412,26*N,N,shmem_getmem )  ! len is in bytes
 
 #endif
@@ -257,9 +259,7 @@
        include 'mpp/shmem.fh'
        integer len,pe
        character     :: xrr, yrr
-#ifdef OPENSHMEM
-       call shmem_character_get (yrr,xrr,len,pe)
-#else
+#ifndef OPENSHMEM
        call shmem_get (yrr,xrr,len,pe)
 #endif
        return
@@ -269,9 +269,7 @@
        include 'mpp/shmem.fh'
        integer len,pe
        character (len=4) :: xr4, yr4
-#ifdef OPENSHMEM
-       call shmem_character_get (yr4,xr4,len,pe)
-#else
+#ifndef OPENSHMEM
        call shmem_get (yr4,xr4,len,pe)
 #endif
        return
@@ -281,9 +279,7 @@
        include 'mpp/shmem.fh'
        integer len,pe
        character (len=8) :: xr8, yr8
-#ifdef OPENSHMEM
-       call shmem_character_get (yr8,xr8,len,pe)
-#else
+#ifndef OPENSHMEM
        call shmem_get (yr8,xr8,len,pe)
 #endif
        return
@@ -293,9 +289,7 @@
        include 'mpp/shmem.fh'
        integer len,pe
        character*26     :: xr26, yr26
-#ifdef OPENSHMEM
-       call shmem_character_get (yr26,xr26,len,pe)
-#else
+#ifndef OPENSHMEM
        call shmem_get (yr26,xr26,len,pe)
 #endif
        return

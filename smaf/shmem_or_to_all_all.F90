@@ -114,6 +114,11 @@
   if (my_pe == 0) then
     allocate (i4(nr,n_pes))
     allocate (r4(nr,n_pes))
+#ifdef OPENSHMEM
+    call random_seed(size=ismax)
+    allocate (iseed(ismax))
+    iseed = 12345
+#endif
     call random_seed(put=iseed)
     call random_number(r4)
     i4=1000000000*r4
