@@ -27,6 +27,7 @@
 #include <stdlib.h>
 #include <shmem.h>
 #include <unistd.h>
+#include <stdint.h>
 
 #define SIZE 1000
 #define BYTE 64
