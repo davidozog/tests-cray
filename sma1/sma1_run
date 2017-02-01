@@ -12,7 +12,7 @@
 echo "====================================================================="
 for TEST in `cat $CRAY_TEST_FILE/sma1/sma1_tlist`
 do
-  $LAUNCHER -n $NPES $CRAY_TEST_BUILD_BIN/sma1/$TEST > $CRAY_TEST_RUN_OUT/sma1/$TEST 2>&1
+  time $LAUNCHER -n $NPES $CRAY_TEST_BUILD_BIN/sma1/$TEST > $CRAY_TEST_RUN_OUT/sma1/$TEST 2>&1
   exit_status=$?
   grep FAIL $CRAY_TEST_RUN_OUT/sma1/$TEST
   fail_found=$?
