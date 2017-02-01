@@ -39,7 +39,7 @@
 #include <stdio.h>
 #include <mpp/shmem.h>
 
-#define ITER     50
+#define ITER     10
 
 long count;
 
