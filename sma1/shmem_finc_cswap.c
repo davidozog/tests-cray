@@ -405,17 +405,17 @@ int main(int argc, char **argv)
         /* conditionally record PE value in xal[oldjl] --
              tells PE involved for each count */
 #if (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
-      oldxal = shmem_cswap(&xal[oldjl], vall, my_pell, 0);
+      oldxal = shmem_cswap(&xal[oldjl], vall, my_pel, 0);
 #else
-      oldxal = shmem_long_cswap(&xal[oldjl], vall, my_pell, 0);
+      oldxal = shmem_long_cswap(&xal[oldjl], vall, my_pel, 0);
 #endif
       /* printf("PE=%d,i=%d,oldjl=%d,oldxal=%d\n",my_pe,i,oldjl,oldxal); */
       if (oldxal == 1) {
             /* record PE value in xl[modjl] */
 #if (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
-        oldxmodjl = shmem_swap(&xl[modjl], my_pell, 0);
+        oldxmodjl = shmem_swap(&xl[modjl], my_pel, 0);
 #else
-        oldxmodjl = shmem_long_swap(&xl[modjl], my_pell, 0);
+        oldxmodjl = shmem_long_swap(&xl[modjl], my_pel, 0);
 #endif
         /* printf("PE=%d,oldjl=%ld,modjl=%ld,oldxmodjl=%ld\n",
                    my_pe,oldjl,modjl,oldxmodjl); */
