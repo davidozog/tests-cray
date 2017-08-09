@@ -107,8 +107,8 @@ int main(int argc, char **argv)
     for(j=1 ; j<n_pes; j++) {
       printf("j=%d,x[%d]=%ld,xa[%d]=%ld\n",j,j-1,x[j-1],i,xa[i]);
       if (x[j-1] != xa[i])
-        fprintf(stderr, "FAIL PE %d of %d: x[%d] = %ld expected = %ld\n", 
-                         my_pe, n_pes, j-1, x[j-1], ITER);
+        fprintf(stderr, "FAIL PE %d of %d: x[%d] = %ld xa[%d] = %ld\n", 
+                         my_pe, n_pes, j-1, x[j-1], i, xa[i]);
       i++;
     }
   }
